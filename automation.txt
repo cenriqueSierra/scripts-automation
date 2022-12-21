@@ -1,0 +1,24 @@
+touch script_connection.pl
+
+#!/usr/local/bin/perl
+
+
+use Net::Telnet::Cisco;
+$user="cesierra";
+$pass="cesierrapasswd";
+$bkp_srv="192.168.101,30";
+$bkp_path="/usr/copias"
+
+$date= date + "XF";
+chomp($date);
+
+$session = Net::Telnet::Cisco->new(Host -> @device,errmode ->'return');
+
+if($session)
+{
+	$session->login("$user,"$pass");
+	@command = ('enable', 'show running-config');
+	@out = $session->cmd('execute');
+	print "@out \n";
+}
+
